@@ -23,6 +23,8 @@ jobs:
           sudo apt install -y jq
 
       - name: Generate
+        permissions:
+	  content: write
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
