@@ -7,6 +7,8 @@ on:
     - cron: "0 0 * * *"
   workflow_dispatch:
 
+permissions: {}
+
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -26,12 +28,12 @@ jobs:
         shell: bash
         run: |
           ./cerclesdelaforme.sh > cerclesdelaforme.ics
-          if [ -z "$(git status -s -- *.ics)" ]; then
+          if [ -z "$(git status -s cerclesdelaforme.ics)" ]; then
             echo No changes to commit
             exit 0
           fi
           git config user.email "check-action@github"
           git config user.name "check-action"
-          git add *.ics
+          git add cerclesdelaforme.ics
           git commit -m "Update iCal files"
           git push origin "${GITHUB_REF#refs/heads/}"
