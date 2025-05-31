@@ -124,7 +124,7 @@ while [ "${page}" -lt "${nbpage}" ]; do
 		\echo "SUMMARY:${titre} @ ${club_code}"
 		\echo "DESCRIPTION:${salle}"
 		\echo "LOCATION:$(\echo "${ADDRESSES}" | \grep -e "${club_code}@" | sed -e 's/.*@//')"
-		\echo "DTSTAMP;TZID=Europe/Paris:19700101T000000Z"
+		\echo "DTSTAMP:19700101T000000Z"
 		\echo -n "DTSTART;TZID=Europe/Paris:${DATES[${jour}]}T"
 		\printf "%02d" "${h_start}"
 		\printf "%02d" "${m_start}"
