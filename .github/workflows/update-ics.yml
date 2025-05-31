@@ -1,0 +1,37 @@
+---
+name: Update iCal files
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Install jq
+        shell: bash
+        run: |
+          sudo apt update
+          sudo apt install -y jq
+
+      - name: Generate
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          ./cerclesdelaforme.sh > cerclesdelaforme.ics
+          if [ -z "$(git status -s -- *.ics)" ]; then
+            echo No changes to commit
+            exit 0
+          fi
+          git config user.email "check-action@github"
+          git config user.name "check-action"
+          git add *.ics
+          git commit -m "Update iCal files"
+          git push origin "${GITHUB_REF#refs/heads/}"
