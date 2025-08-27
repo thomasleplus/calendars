@@ -25,7 +25,7 @@ jobs:
           IFS=$'\n\t'
           sudo apt-get update
           sudo apt-get install --no-install-recommends -y jq=1.7.1-3ubuntu0.24.04.1
-          if sudo apt-get upgrade -s | tee -a /dev/stderr | grep -q -e '^Inst libperl-critic-perl '; then
+          if sudo apt-get upgrade -s jq | tee -a /dev/stderr | grep -q -e '^Inst jq '; then
             exit 1
           fi
 
