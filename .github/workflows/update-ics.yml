@@ -45,5 +45,5 @@ jobs:
           git config user.email "check-action@github"
           git config user.name "check-action"
           git add cerclesdelaforme.ics
-          git commit -m "buid(cerclesdelaforme): update iCal files"
+          git commit -m "build(cerclesdelaforme): update iCal files"
           git push origin "${GITHUB_REF#refs/heads/}"
