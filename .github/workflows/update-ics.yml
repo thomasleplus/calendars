@@ -10,7 +10,7 @@ on:
 permissions: {}
 
 jobs:
-  check:
+  update-ics:
     runs-on: ubuntu-latest
     permissions:
       contents: write
