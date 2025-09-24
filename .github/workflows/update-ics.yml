@@ -13,6 +13,7 @@ jobs:
   update-ics:
     runs-on: ubuntu-latest
     permissions:
+      # Required to commit/push
       contents: write
     steps:
       - name: Check out
